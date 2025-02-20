@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     //Movement
     private Vector2 moveDirection;
     private Vector2 lookDirection;
+    public CharacterController CharacterController;
     
     //Initialization of input actions
     private void Awake() 
@@ -50,6 +51,9 @@ public class PlayerController : MonoBehaviour
         //Disable cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Add characterController
+        CharacterController = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -77,12 +81,12 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         //Understand the direction
-        Vector3 direction = new Vector3(moveDirection.x, 0, moveDirection.y);
+        Vector3 direction = new Vector3(moveDirection.x, 0, moveDirection.y).normalized;
         direction = transform.TransformDirection(direction);
         Vector3 velocity = direction * gameInfo.speed * Time.fixedDeltaTime;
 
         //Move
-        rb.linearVelocity = velocity;
+        CharacterController.Move(velocity);
     }
 
     void Look()
