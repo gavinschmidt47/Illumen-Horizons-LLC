@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     //Camera
     public Camera mainCamera;
+    private bool camControl = false;
 
     //InputActions
     public InputActionAsset playerControls;
@@ -20,9 +21,7 @@ public class PlayerController : MonoBehaviour
 
     //Movement
     private Vector3 moveDirection;
-    private Vector2 lookDirection;
-    private float inputX;
-    private float inputY;
+    private float stamina = 100.0f;
     
     //Initialization of input actions
     private void Awake() 
@@ -50,6 +49,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = false; // Ensure Rigidbody is not kinematic
 
+        //Set speed
+        gameInfo.speed = gameInfo.walkSpeed;
+
+        //Set Stamina
+        stamina = gameInfo.maxStamina;
+
         //Freeze rotation
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
@@ -60,12 +65,16 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate ()
     {
-        Vector2 mouseDelta = look.ReadValue<Vector2>();
-        Vector3 rotation = transform.rotation.eulerAngles;
-        rotation.y += mouseDelta.x * gameInfo.mouseSensitivity;
-        transform.rotation = Quaternion.Euler(0, rotation.y, 0);
-        mainCamera.transform.Rotate(Vector3.left * mouseDelta.y * gameInfo.mouseSensitivity);
-        mainCamera.transform.localEulerAngles = new Vector3(mainCamera.transform.localEulerAngles.x, mainCamera.transform.localEulerAngles.y, 0);
+        //Look
+        if (camControl)
+        {
+            Vector2 mouseDelta = look.ReadValue<Vector2>();
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y += mouseDelta.x * gameInfo.mouseSensitivity;
+            transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+            mainCamera.transform.Rotate(Vector3.left * mouseDelta.y * gameInfo.mouseSensitivity);
+            mainCamera.transform.localEulerAngles = new Vector3(mainCamera.transform.localEulerAngles.x, mainCamera.transform.localEulerAngles.y, 0);
+        }
 
         //Clamp the pitch rotation to prevent the camera from flipping
         Vector3 currentRotation = mainCamera.transform.localEulerAngles;
@@ -83,12 +92,37 @@ public class PlayerController : MonoBehaviour
         Vector2 input = Vector2.zero;
         input = movement.ReadValue<Vector2>();
 
-        // Debug movement input
-        Debug.Log($"Movement Input: {input}");
+        //Locked Cam
+        if (input.magnitude > 1 && !camControl)
+        {
+            camControl = true;
+        }
+
+        //Sprint
+        if (sprint.ReadValue<float>() > 0)
+        {
+            gameInfo.speed = gameInfo.sprintSpeed;
+            stamina -= gameInfo.staminaDecrease;
+            if (stamina < 0)
+            {
+                stamina = 0;
+                gameInfo.speed = gameInfo.walkSpeed;
+            }
+        }
+        else
+        {
+            gameInfo.speed = gameInfo.walkSpeed;
+            if (stamina < gameInfo.maxStamina)
+            {
+                stamina += gameInfo.staminaIncrease;
+            }
+        }
 
         //Move
-        moveDirection = new Vector3(input.x, 0, input.y);
-        moveDirection = transform.TransformDirection(Vector3.forward * -input.y + Vector3.right * -input.x) * gameInfo.speed;
-        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
+        moveDirection = transform.TransformDirection(Vector3.forward * input.y + Vector3.right * input.x) * gameInfo.speed;
+
+        // Debug movement input
+        Debug.Log($"Movement Logic: {moveDirection}");
+        rb.linearVelocity = new Vector3(moveDirection.x, 0, moveDirection.z);
     }
 }

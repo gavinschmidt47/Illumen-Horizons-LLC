@@ -8,4 +8,7 @@ public class GameInfo : ScriptableObject
     public float walkSpeed = 5.0f;
     public float mouseSensitivity = 1.0f;
     public float maxPitch = 80.0f;
+    public float maxStamina = 100.0f;
+    public float staminaDecrease = 0.5f;
+    public float staminaIncrease = 0.5f;
 }
