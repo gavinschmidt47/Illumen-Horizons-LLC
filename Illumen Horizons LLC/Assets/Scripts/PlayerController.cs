@@ -80,12 +80,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //Get input
-        inputX = Input.GetAxis("Horizontal");
-        inputY = Input.GetAxis("Vertical");
+        Vector2 input = Vector2.zero;
+        input = movement.ReadValue<Vector2>();
+
+        // Debug movement input
+        Debug.Log($"Movement Input: {input}");
 
         //Move
-        moveDirection = new Vector3(inputX, 0, -inputY);
-        moveDirection = transform.TransformDirection(moveDirection) * gameInfo.speed;
-        rb.linearVelocity = new Vector3(moveDirection.x, 0, moveDirection.z);
+        moveDirection = new Vector3(input.x, 0, input.y);
+        moveDirection = transform.TransformDirection(Vector3.forward * -input.y + Vector3.right * -input.x) * gameInfo.speed;
+        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
     }
 }
