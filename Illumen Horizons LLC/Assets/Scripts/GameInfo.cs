@@ -11,4 +11,5 @@ public class GameInfo : ScriptableObject
     public float maxStamina = 100.0f;
     public float staminaDecrease = 0.5f;
     public float staminaIncrease = 0.5f;
+    public float ttTime = 3f;
 }

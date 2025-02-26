@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe6fdbc5cfbdf04b8d4a1b7bb60f727, type: 3}
   m_Name: GameInfo
   m_EditorClassIdentifier: 
-  speed: 50
-  sprintSpeed: 80
-  walkSpeed: 50
-  yawSpeed: 200
-  pitchSpeed: 145
+  speed: 2
+  sprintSpeed: 5
+  walkSpeed: 2
+  mouseSensitivity: 0.5
   maxPitch: 80
+  maxStamina: 100
+  staminaDecrease: 0.5
+  staminaIncrease: 0.5

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
     //Movement
     private Vector3 moveDirection;
     private float stamina = 100.0f;
+
+    //UI
+    public GameObject moveTT;
     
     //Initialization of input actions
     private void Awake() 
@@ -61,6 +65,9 @@ public class PlayerController : MonoBehaviour
         //Disable cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Move tooltip
+        moveTT.SetActive(true);
     }
 
     void LateUpdate ()
@@ -96,6 +103,9 @@ public class PlayerController : MonoBehaviour
         if (input.magnitude > 1 && !camControl)
         {
             camControl = true;
+            
+            //Remove tooltip
+            StartCoroutine(ToolTip(moveTT));
         }
 
         //Sprint
@@ -121,8 +131,30 @@ public class PlayerController : MonoBehaviour
         //Move
         moveDirection = transform.TransformDirection(Vector3.forward * input.y + Vector3.right * input.x) * gameInfo.speed;
 
-        // Debug movement input
-        Debug.Log($"Movement Logic: {moveDirection}");
-        rb.linearVelocity = new Vector3(moveDirection.x, 0, moveDirection.z);
+        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
+    }
+
+    private IEnumerator ToolTip(GameObject tip)
+    {   
+        CanvasGroup canvasGroup = tip.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = tip.AddComponent<CanvasGroup>();
+        }
+        canvasGroup.alpha = 1;
+
+        tip.SetActive(true);
+        yield return new WaitForSeconds(gameInfo.ttTime);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 1f)
+        {
+            elapsedTime += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(1, 0, elapsedTime);
+            yield return null;
+        }
+        canvasGroup.alpha = 0;
+        tip.SetActive(false);
     }
 }
