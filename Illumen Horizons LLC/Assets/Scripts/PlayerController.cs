@@ -72,11 +72,13 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate ()
     {
+        //Prevent physics interference
+        rb.angularVelocity = Vector3.zero;
+        
         //Look
         if (camControl)
         {
             Vector2 mouseDelta = look.ReadValue<Vector2>();
-            mainCamera.transform.localEulerAngles = new Vector3(0, mainCamera.transform.localEulerAngles.y, 0);
             Vector3 rotation = transform.rotation.eulerAngles;
             rotation.y += mouseDelta.x * gameInfo.mouseSensitivity;
             transform.rotation = Quaternion.Euler(0, rotation.y, 0);
