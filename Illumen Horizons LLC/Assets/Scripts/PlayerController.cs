@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,10 +28,9 @@ public class PlayerController : MonoBehaviour
 
     //UI
     public GameObject moveTT;
+    public Slider staminaUI;
 
     //Enemy
-    public NavMeshAgent enemy;
-    public Vector3[] spawn;
     public GameObject enemyObject;
     
     //Initialization of input actions
@@ -77,9 +77,6 @@ public class PlayerController : MonoBehaviour
 
         //Set NavMesh
         gameInfo.inStart = true;
-        enemyObject.GetComponent<EnemyController>().enabled = false;
-        enemy.SetDestination(spawn[UnityEngine.Random.Range(0, 5)]);
-        enemy.isStopped = false;
     }
 
     void LateUpdate ()
@@ -143,6 +140,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //Stamina UI
+        staminaUI.value = stamina / gameInfo.maxStamina;
+
         //Move
         moveDirection = transform.TransformDirection(Vector3.forward * input.y + Vector3.right * input.x) * gameInfo.speed;
 
@@ -173,29 +173,11 @@ public class PlayerController : MonoBehaviour
         tip.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Start"))
         {
-            //Track start
-            if (gameInfo.inStart)
-            {
-                //Track start
-                gameInfo.inStart = false;
-
-                //Enable enemy
-                enemy.isStopped = false;
-                enemyObject.GetComponent<EnemyController>().enabled = true;
-            }
-            else
-            {
-                //Track start
-                gameInfo.inStart = false;
-                
-                //Disable enemy
-                enemyObject.GetComponent<EnemyController>().enabled = false;
-                enemy.SetDestination(spawn[UnityEngine.Random.Range(0, 5)]);
-            }
+            gameInfo.inStart = false;
         }
     }
 }
