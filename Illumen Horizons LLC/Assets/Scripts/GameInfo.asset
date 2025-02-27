@@ -20,3 +20,6 @@ MonoBehaviour:
   maxStamina: 100
   staminaDecrease: 0.5
   staminaIncrease: 0.5
+  ttTime: 3
+  inStart: 0
+  ability: 0
