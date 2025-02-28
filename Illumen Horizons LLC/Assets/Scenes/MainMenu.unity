@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &324516646
 Transform:
   m_ObjectHideFlags: 0
@@ -439,6 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 374701580}
   - component: {fileID: 374701581}
+  - component: {fileID: 374701582}
   m_Layer: 0
   m_Name: InvincibilityToggle
   m_TagString: Untagged
@@ -515,6 +516,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &374701582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374701579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e814b3c41332d4aab6b18850510bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameInfo: {fileID: 11400000, guid: 81f4a9e533c30c743a7e9eb9cecd9058, type: 2}
+  toggle: {fileID: 374701581}
 --- !u!1 &437703703
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &548310354
 Transform:
   m_ObjectHideFlags: 0
@@ -991,6 +1006,8 @@ MonoBehaviour:
   optionsPanel: {fileID: 548310353}
   aboutPanel: {fileID: 1279784672}
   backButton: {fileID: 1112420507}
+  infToggle: {fileID: 1622379712}
+  invToggle: {fileID: 374701581}
 --- !u!4 &772354923
 Transform:
   m_ObjectHideFlags: 0

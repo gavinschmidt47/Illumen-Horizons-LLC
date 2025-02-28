@@ -12,6 +12,28 @@ public class MenuController : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject aboutPanel;
     public Button backButton;
+    public Toggle infToggle;
+    public Toggle invToggle;
+
+    private void OnEnable()
+    {
+        // Ensure the toggle's initial state matches the ScriptableObject's value
+        if (infToggle != null && gameInfo != null)
+        {
+            infToggle.isOn = gameInfo.infStam;
+        }
+
+        if (invToggle != null && gameInfo != null)
+        {
+            invToggle.isOn = gameInfo.invincible;
+        }
+
+        // Add listener for when the toggle's value changes
+        infToggle.onValueChanged.AddListener(OnInfToggleValueChanged);
+        invToggle.onValueChanged.AddListener(OnInvToggleValueChanged);
+    }
+
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,10 +42,6 @@ public class MenuController : MonoBehaviour
         optionsPanel.SetActive(false);
         aboutPanel.SetActive(false);
         backButton.gameObject.SetActive(false);
-
-        //Set Player Stats
-        gameInfo.infStam = false;
-        gameInfo.invincible = false;
     }
 
     // Update is called once per frame
@@ -67,5 +85,24 @@ public class MenuController : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    private void OnInfToggleValueChanged(bool newValue)
+    {
+        // Update the ScriptableObject's value when the toggle changes
+        if (gameInfo != null)
+        {
+            gameInfo.infStam = newValue;
+            Debug.Log($"Toggle value changed to: {newValue}");
+        }
+    }
+    private void OnInvToggleValueChanged(bool newValue)
+    {
+        // Update the ScriptableObject's value when the toggle changes
+        if (gameInfo != null)
+        {
+            gameInfo.invincible = newValue;
+            Debug.Log($"Invincible toggle value changed to: {newValue}");
+        }
     }
 }
