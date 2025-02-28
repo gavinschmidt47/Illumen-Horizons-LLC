@@ -7,6 +7,7 @@ public class GameInfo : ScriptableObject
     public float speed = 5.0f;
     public float sprintSpeed = 10.0f;
     public float walkSpeed = 5.0f;
+    public bool infStam;
 
     //Mouse stats
     public float mouseSensitivity = 1.0f;
@@ -25,4 +26,7 @@ public class GameInfo : ScriptableObject
 
     //Enemy stats
     public int ability;
+
+    //Player stats
+    public bool invincible;
 }
