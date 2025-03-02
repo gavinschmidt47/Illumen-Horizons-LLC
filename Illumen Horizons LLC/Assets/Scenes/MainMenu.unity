@@ -119,6 +119,73 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &78245815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 78245817}
+  - component: {fileID: 78245816}
+  - component: {fileID: 78245818}
+  m_Layer: 5
+  m_Name: PostProcessingGO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &78245816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78245815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: d10d681fa04d4154291178ef61053cbf, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!4 &78245817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78245815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 431.6991, y: 292.8066, z: 154.45203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &78245818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78245815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 45dcbfda61b121b4097812b489458398, type: 2}
 --- !u!1 &103315076
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 324516646}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Main menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +781,7 @@ GameObject:
   - component: {fileID: 374701580}
   - component: {fileID: 374701581}
   - component: {fileID: 374701582}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InvincibilityToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +906,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3.1973696, y: -175.59756}
-  m_SizeDelta: {x: 169.5167, y: 60.8317}
+  m_SizeDelta: {x: 176.349, y: 60.832}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &437703705
 MonoBehaviour:
@@ -1082,7 +1149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548310354}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Options Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1584,7 +1651,7 @@ GameObject:
   - component: {fileID: 782629752}
   - component: {fileID: 782629754}
   - component: {fileID: 782629753}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2062,7 +2129,7 @@ GameObject:
   - component: {fileID: 978173014}
   - component: {fileID: 978173016}
   - component: {fileID: 978173015}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2531,6 +2598,7 @@ GameObject:
   - component: {fileID: 1110713017}
   - component: {fileID: 1110713016}
   - component: {fileID: 1110713019}
+  - component: {fileID: 1110713020}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2635,7 +2703,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2656,6 +2724,23 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1110713020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110713015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 45dcbfda61b121b4097812b489458398, type: 2}
 --- !u!1 &1112420505
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,7 +3021,7 @@ GameObject:
   - component: {fileID: 1247727122}
   - component: {fileID: 1247727124}
   - component: {fileID: 1247727123}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3013,7 +3098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1279784673}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AboutSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3052,7 +3137,7 @@ GameObject:
   - component: {fileID: 1489543223}
   - component: {fileID: 1489543225}
   - component: {fileID: 1489543224}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3127,7 +3212,7 @@ GameObject:
   - component: {fileID: 1552064662}
   - component: {fileID: 1552064664}
   - component: {fileID: 1552064663}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3245,15 +3330,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9529412}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5ac71a6a1f462e84f88d30afb2fd03af, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3418,7 +3503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622379711}
   - component: {fileID: 1622379712}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InfiniteStaminaToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3505,7 +3590,7 @@ GameObject:
   - component: {fileID: 1646895180}
   - component: {fileID: 1646895182}
   - component: {fileID: 1646895181}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3773,8 +3858,8 @@ Canvas:
   m_GameObject: {fileID: 1929910456}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1110713017}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3983,7 +4068,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3.197345, y: -101.097565}
-  m_SizeDelta: {x: 212.1673, y: 56.1889}
+  m_SizeDelta: {x: 236.568, y: 53.261}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2127206691
 MonoBehaviour:
@@ -4167,3 +4252,4 @@ SceneRoots:
   - {fileID: 1929910460}
   - {fileID: 2127882606}
   - {fileID: 772354923}
+  - {fileID: 78245817}
