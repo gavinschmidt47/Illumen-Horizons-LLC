@@ -358,7 +358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.197327, y: 11.702431}
+  m_AnchoredPosition: {x: 9, y: -84}
   m_SizeDelta: {x: 716.8998, y: 129.1139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &216374613
@@ -1210,7 +1210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 395.49738, y: -162.89758}
+  m_AnchoredPosition: {x: 559, y: -146}
   m_SizeDelta: {x: 716.8998, y: 129.1139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &611485725
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -267.4513, y: 0, z: 428.42892, w: 0}
+  m_margin: {x: -127.114136, y: 0, z: 428.42892, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1487,7 +1487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 273.59735, y: -100.99755}
+  m_AnchoredPosition: {x: 510, y: -83}
   m_SizeDelta: {x: 716.8998, y: 129.1139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707327431
@@ -2230,7 +2230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.1973572, y: -244.29756}
+  m_AnchoredPosition: {x: -21, y: -267}
   m_SizeDelta: {x: 127.391, y: 58.8259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1024576509
@@ -2361,7 +2361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.197327, y: -38.69757}
+  m_AnchoredPosition: {x: -38, y: -148}
   m_SizeDelta: {x: 716.8998, y: 129.1139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058592602
@@ -2386,7 +2386,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Move: WASD
 
-    Sprint: Left SHift'
+    Sprint: Left Shift
+
+    Look In different Directions:
+    Mouse'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa928b8fad743ba488c44faf787b1d46, type: 2}
   m_sharedMaterial: {fileID: 208951361976507370, guid: aa928b8fad743ba488c44faf787b1d46, type: 2}
@@ -2451,7 +2454,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 493.03632, w: 0}
+  m_margin: {x: -21.820007, y: 0, z: 364.26727, w: 0.04495239}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2908,7 +2911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.197327, y: 134.40244}
+  m_AnchoredPosition: {x: 9.197327, y: 202}
   m_SizeDelta: {x: 716.8998, y: 129.1139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159426118
