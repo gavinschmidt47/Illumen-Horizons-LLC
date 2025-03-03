@@ -42,6 +42,8 @@ public class MenuController : MonoBehaviour
         optionsPanel.SetActive(false);
         aboutPanel.SetActive(false);
         backButton.gameObject.SetActive(false);
+
+        gameInfo.gameOver = false;
     }
 
     // Update is called once per frame

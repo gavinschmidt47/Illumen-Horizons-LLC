@@ -29,4 +29,8 @@ public class GameInfo : ScriptableObject
 
     //Player stats
     public bool invincible;
+
+    //gameinfo
+    public bool paused;
+    public bool gameOver;
 }

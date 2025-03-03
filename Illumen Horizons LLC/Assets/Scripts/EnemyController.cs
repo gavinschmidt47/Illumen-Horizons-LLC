@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
 
     //Enemy
     private Rigidbody rb;
+    public AudioSource audio;
+
     void Awake()
     {
         //change back to 2
@@ -41,6 +43,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if((player.transform.position - transform.position).magnitude < 15f)
+        {
+            audio.mute = false;
+        }
+        else
+        {
+            audio.mute = true;
+        }
         if (!gameInfo.inStart)
         {
             switch (gameInfo.ability)

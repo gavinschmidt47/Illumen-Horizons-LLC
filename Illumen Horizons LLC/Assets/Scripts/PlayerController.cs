@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     //UI
     public GameObject moveTT;
     public Slider staminaUI;
+    public GameObject winPanel;
+    public GameObject losePanel;
+    public AudioSource goMusic;
+    public AudioSource enemyDeath;
 
     //Enemy
     public GameObject enemyObject;
@@ -77,6 +81,9 @@ public class PlayerController : MonoBehaviour
 
         //Set NavMesh
         gameInfo.inStart = true;
+
+        //Set Pause
+        gameInfo.paused = false;
     }
 
     void LateUpdate ()
@@ -85,7 +92,7 @@ public class PlayerController : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         //Look
-        if (camControl)
+        if (camControl && !gameInfo.paused)
         {
             Vector2 mouseDelta = look.ReadValue<Vector2>();
             Vector3 rotation = transform.rotation.eulerAngles;
@@ -112,7 +119,7 @@ public class PlayerController : MonoBehaviour
         input = movement.ReadValue<Vector2>();
 
         //Locked Cam
-        if (input.magnitude > 1 && !camControl)
+        if (input.magnitude > 0.1f && !camControl)
         {
             camControl = true;
             
@@ -124,11 +131,15 @@ public class PlayerController : MonoBehaviour
         if (sprint.ReadValue<float>() > 0)
         {
             gameInfo.speed = gameInfo.sprintSpeed;
-            stamina -= gameInfo.staminaDecrease;
-            if (stamina < 0)
+            if (!gameInfo.infStam)
             {
-                stamina = 0;
-                gameInfo.speed = gameInfo.walkSpeed;
+                
+                stamina -= gameInfo.staminaDecrease;
+                if (stamina < 0)
+                {
+                    stamina = 0;
+                    gameInfo.speed = gameInfo.walkSpeed;
+                }
             }
         }
         else
@@ -146,7 +157,7 @@ public class PlayerController : MonoBehaviour
         //Move
         moveDirection = transform.TransformDirection(Vector3.forward * input.y + Vector3.right * input.x) * gameInfo.speed;
 
-        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
+        rb.linearVelocity = new Vector3(moveDirection.x, 0, moveDirection.z);
     }
 
     private IEnumerator ToolTip(GameObject tip)
@@ -178,6 +189,60 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Start"))
         {
             gameInfo.inStart = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.CompareTag("Stair 1"))
+        {
+            transform.position = new Vector3 (-27f, 7.6f, 38.178f);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+        else if (other.CompareTag("Stair 2"))
+        {
+            transform.position = new Vector3 (24.9f, 7.6f, 38.178f);
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+        }
+        else if (other.CompareTag("Finish"))
+        {
+            Time.timeScale = 0;
+            movement.Disable();
+            sprint.Disable();
+            look.Disable();
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            goMusic.mute = false;
+
+            winPanel.SetActive(true);
+            staminaUI.gameObject.SetActive(false);
+
+            gameInfo.gameOver = true;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !gameInfo.invincible)
+        {
+            Time.timeScale = 0;
+            movement.Disable();
+            sprint.Disable();
+            look.Disable();
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            losePanel.SetActive(true);
+            staminaUI.gameObject.SetActive(false);
+
+            goMusic.mute = false;
+
+            Destroy(collision.gameObject);
+            
+            gameInfo.gameOver = true;
         }
     }
 }
