@@ -25,7 +25,6 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
-        //change back to 2
         gameInfo.ability = UnityEngine.Random.Range(0 , 2);
 
         rb = GetComponent<Rigidbody>();
