@@ -113,13 +113,11 @@ public class EnemyController : MonoBehaviour
                     {
                         if (hit.collider.gameObject == player)
                         {
-                            Debug.Log("Player in line of sight");
                             agent.isStopped = true;
                             rb.constraints = RigidbodyConstraints.FreezeAll;
                         }
                         else
                         {
-                            Debug.Log("Player not in line of sight");
                             agent.isStopped = false;
                             rb.constraints = RigidbodyConstraints.None;
                             agent.SetDestination(player.transform.position);
@@ -127,7 +125,6 @@ public class EnemyController : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Raycast did not hit anything");
                         agent.isStopped = false;
                         rb.constraints = RigidbodyConstraints.None;
                         agent.SetDestination(player.transform.position);
