@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     public Toggle invT;
     public Toggle infT;
     public GameObject backB;
+    public GameObject invText;
+    public GameObject infText;
 
     
     void Awake ()
@@ -37,6 +39,9 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Set UI
+        invText.SetActive(gameInfo.invincible);
+        infText.SetActive(gameInfo.infStam);
     }
 
     // Update is called once per frame
@@ -54,6 +59,8 @@ public class GameController : MonoBehaviour
                 Cursor.visible = true;
 
                 pausePanel.SetActive(true);
+                invText.SetActive(false);
+                infText.SetActive(false);
 
                 gameInfo.paused = true;
             }
@@ -70,6 +77,8 @@ public class GameController : MonoBehaviour
                 Cursor.visible = false;
 
                 pausePanel.SetActive(false);
+                invText.SetActive(gameInfo.invincible);
+                infText.SetActive(gameInfo.infStam);
 
                 gameInfo.paused = false;
             }
@@ -117,5 +126,7 @@ public class GameController : MonoBehaviour
         pausePanel.SetActive(false);
 
         gameInfo.paused = false;
+        invText.SetActive(gameInfo.invincible);
+        infText.SetActive(gameInfo.infStam);
     }
 }
